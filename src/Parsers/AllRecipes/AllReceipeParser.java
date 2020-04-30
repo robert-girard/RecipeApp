@@ -1,20 +1,16 @@
 package Parsers.AllRecipes;
 
 import Parsers.GenericParser;
-import Parsers.IncorrectParserException;
-import Parsers.ParserFailedException;
+import Parsers.Exceptions.IncorrectParserException;
+import Parsers.Exceptions.ParserFailedException;
+import Parsers.Styles;
 import Recipe.Directions;
 import Recipe.Ingredient;
-import Recipe.IngredientGroup;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AllReceipeParser extends GenericParser {
 
@@ -44,7 +40,7 @@ public class AllReceipeParser extends GenericParser {
 
     @Override
     public Directions parseDirections() throws ParserFailedException{
-        style.getDirections(doc);
-        return null;
+        List<String> steps = style.getDirections(doc);
+        return new Directions(steps);
     }
 }

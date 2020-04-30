@@ -6,6 +6,10 @@ public class IngredientGroup {
     private List<Ingredient> ingredients;
     private String groupName;
 
+    public IngredientGroup(String groupName, List<String> ingredientStringList) {
+
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }

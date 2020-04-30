@@ -1,18 +1,19 @@
-package Parsers;
+package Measurement;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Units {
-    CUP("Cup"),
+    CUP("cup"),
     GRAM("gram", "kg"),
     LITRE("L", "litre", "liter"),
-    OUNCE("Ounce", "Oz"),
+    OUNCE("ounce", "oz"),
     PINT("pint"),
     POUND("pound", "lb"),
-    STICK("Stick"),
+    STICK("stick"),
+    PINCH("pinch"),
     TABLESPOON("tbsp", "tablespoon"),
-    TEASPOON("TBS", "teaspoon");
+    TEASPOON("tbs", "teaspoon");
 
     private final List<String> units;
 

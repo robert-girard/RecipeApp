@@ -1,6 +1,10 @@
 import Parsers.AllRecipes.AllReceipeParser;
-import Parsers.Metric;
-import Parsers.Units;
+import Measurement.Metric;
+import Measurement.Units;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +13,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+        /*
         try {
             AllReceipeParser allReceipeParser = new AllReceipeParser("https://www.allrecipes.com/recipe/266351/steamed-barbecue-pork-buns/");
             allReceipeParser.parseIngredients();
@@ -37,6 +42,26 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
+         List<String> mtest = Arrays.asList("1 teaspoon Chinese five-spice powder", "1/2 teaspoon freshly ground black pepper",
+                 "1/4 teaspoon cayenne pepper",
+                 "1/8 teaspoon pink curing salt (optional)",
+                 "1 (3 pound) boneless pork butt (shoulder)",
+                 "1 pound raw shrimp, peeled and deveined",
+                 "4 pounds ground beef",
+                 "1 tablespoon minced fresh ginger root",
+                 "1 shallot, minced",
+                 "1 bunch green onions, chopped",
+                 "3 leaves napa cabbage, chopped",
+                 "2 tablespoons soy sauce",
+                 "1 teaspoon Asian (toasted) sesame oil",
+                 "salt and white pepper to taste",
+                 "1 pinch white sugar",
+                 "1 (10 ounce) package round gyoza/potsticker wrappers",
+                 "vegetable oil",
+                 "¼ cup water");
+
+
 
 
     }

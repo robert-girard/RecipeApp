@@ -1,6 +1,7 @@
 package Parsers.AllRecipes;
 
-import Parsers.ParserFailedException;
+import Parsers.Exceptions.ParserFailedException;
+import Parsers.Styles;
 import Recipe.IngredientGroup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,8 +65,6 @@ public class Style1 implements Styles {
         for (Element instruction : instructions.first().select("li")) {
             sInstuctions.add(instruction.text());
         }
-        System.out.println("Instructions");
-        System.out.println(sInstuctions);
         return sInstuctions;
     }
 

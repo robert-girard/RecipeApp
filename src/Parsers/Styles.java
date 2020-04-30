@@ -1,6 +1,6 @@
-package Parsers.AllRecipes;
+package Parsers;
 
-import Parsers.ParserFailedException;
+import Parsers.Exceptions.ParserFailedException;
 import Recipe.IngredientGroup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

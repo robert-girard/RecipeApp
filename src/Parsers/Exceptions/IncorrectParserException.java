@@ -1,4 +1,4 @@
-package Parsers;
+package Parsers.Exceptions;
 
 public class IncorrectParserException extends Exception {
 

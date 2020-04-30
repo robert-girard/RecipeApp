@@ -1,13 +1,13 @@
 package Parsers.AllRecipes;
 
-import Parsers.ParserFailedException;
+import Parsers.Exceptions.ParserFailedException;
+import Parsers.Styles;
 import Recipe.IngredientGroup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
 public class Style2 implements Styles {
@@ -54,8 +54,6 @@ public class Style2 implements Styles {
             }
             sInstuctions.add(body.text());
         }
-        System.out.println("Instructions");
-        System.out.println(sInstuctions);
         return sInstuctions;
     }
 
