@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Style1 implements Styles{
+public class Style1 implements Styles {
 
 
     public List<Element> getIngredientLists(Document doc, String url) throws ParserFailedException {
@@ -54,4 +54,21 @@ public class Style1 implements Styles{
         System.out.println(ingredients);
         return new ArrayList<>(); //todo make this the actual list
     }
+
+    public List<String> getDirections(Document doc) throws ParserFailedException {
+        List<String> sInstuctions = new ArrayList<String>();
+        Elements instructions = doc.select("ol[itemprop=recipeInstructions]");
+        if (instructions.size() !=1) {
+            throw new ParserFailedException("0 or more than one instructions sections");
+        }
+        for (Element instruction : instructions.first().select("li")) {
+            sInstuctions.add(instruction.text());
+        }
+        System.out.println("Instructions");
+        System.out.println(sInstuctions);
+        return sInstuctions;
+    }
+
+
 }
+

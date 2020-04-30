@@ -12,6 +12,7 @@ public class Main {
         try {
             AllReceipeParser allReceipeParser = new AllReceipeParser("https://www.allrecipes.com/recipe/266351/steamed-barbecue-pork-buns/");
             allReceipeParser.parseIngredients();
+            allReceipeParser.parseDirections();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -23,6 +24,7 @@ public class Main {
         try {
             AllReceipeParser allReceipeParser = new AllReceipeParser("https://www.allrecipes.com/recipe/276226/lazy-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202");
             allReceipeParser.parseIngredients();
+            allReceipeParser.parseDirections();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,6 +33,7 @@ public class Main {
         try {
             AllReceipeParser allReceipeParser = new AllReceipeParser("https://www.allrecipes.com/recipe/61024/asian-orange-chicken/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%2043");
             allReceipeParser.parseIngredients();
+            allReceipeParser.parseDirections();
         } catch (Exception e) {
             e.printStackTrace();
         }

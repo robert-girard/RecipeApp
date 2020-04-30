@@ -43,7 +43,8 @@ public class AllReceipeParser extends GenericParser {
 
 
     @Override
-    public Directions parseDirections() {
+    public Directions parseDirections() throws ParserFailedException{
+        style.getDirections(doc);
         return null;
     }
 }

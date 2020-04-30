@@ -10,4 +10,5 @@ import java.util.List;
 public interface Styles {
     public List<Element> getIngredientLists(Document doc, String url) throws ParserFailedException;
     public List<IngredientGroup> parseIngredientGroups (List<Element> ingredientList);
+    public List<String> getDirections(Document doc) throws ParserFailedException;
 }

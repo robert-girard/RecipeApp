@@ -39,7 +39,7 @@ abstract public class GenericParser {
 
     public abstract List<Ingredient> parseIngredients() throws ParserFailedException;
 
-    public abstract Directions parseDirections();
+    public abstract Directions parseDirections() throws ParserFailedException;
 
     public Ingredient parseUnits(String measurement) {
         return new Ingredient("Ingredient", 5,"Unit");

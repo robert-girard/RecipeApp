@@ -7,6 +7,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 
 public class Style2 implements Styles {
@@ -37,7 +38,25 @@ public class Style2 implements Styles {
             groupTitle = "";
             ingredients.clear();
         }
-
         return new ArrayList<>(); //todo make this the actual list
     }
+
+    public List<String> getDirections(Document doc) throws ParserFailedException {
+        List<String> sInstuctions = new ArrayList<String>();
+        Elements instructions = doc.select("ul[class=instructions-section]");
+        if (instructions.size() !=1) {
+            throw new ParserFailedException("0 or more than one instructions sections");
+        }
+        for (Element instruction : instructions.first().select("li")) {
+            Elements body = instruction.select("div.section-body");
+            if (body.size() !=1) {
+                throw new ParserFailedException("0 or more than one instruction bodies");
+            }
+            sInstuctions.add(body.text());
+        }
+        System.out.println("Instructions");
+        System.out.println(sInstuctions);
+        return sInstuctions;
+    }
+
 }
