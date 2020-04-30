@@ -1,5 +1,4 @@
-import Database.Connect;
-import Parsers.AllReceipeParser;
+import Parsers.AllRecipes.AllReceipeParser;
 import Parsers.Metric;
 import Parsers.Units;
 
@@ -27,6 +26,15 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("\n\n\n");
+        try {
+            AllReceipeParser allReceipeParser = new AllReceipeParser("https://www.allrecipes.com/recipe/61024/asian-orange-chicken/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%2043");
+            allReceipeParser.parseIngredients();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

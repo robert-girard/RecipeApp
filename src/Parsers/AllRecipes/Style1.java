@@ -1,33 +1,18 @@
-package Parsers;
+package Parsers.AllRecipes;
 
-import Recipe.Directions;
-import Recipe.Ingredient;
+import Parsers.ParserFailedException;
 import Recipe.IngredientGroup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class AllReceipeParser extends GenericParser {
+public class Style1 implements Styles{
 
-    public AllReceipeParser(String url) throws IOException, IncorrectParserException {
-        super(url, "allrecipes.com");
-    }
 
-    @Override
-    public List<Ingredient> parseIngredients() throws ParserFailedException {
-        List<Element> ingredientList = getIngredientLists();
-        parseIngredientGroups(ingredientList);
-
-        return null; // label[class^=checkList__item]
-    }
-
-    private List<Element> getIngredientLists() throws ParserFailedException {
+    public List<Element> getIngredientLists(Document doc, String url) throws ParserFailedException {
         List<Element> ingredientLists = new ArrayList<>(); //super.doc.select("ul[id^=]");
         int count = 1;
         Element e = doc.getElementById("lst_ingredients_" + count);
@@ -36,14 +21,14 @@ public class AllReceipeParser extends GenericParser {
             count +=1;
             e = doc.getElementById("lst_ingredients_" + count);
         }
-        if (ingredientLists == null) {
+        if (ingredientLists.isEmpty()) {
             throw new ParserFailedException("No Ingredient Lists Found on webpage: " + url);
         }
         return ingredientLists;
     }
 
-    private List<IngredientGroup> parseIngredientGroups (List<Element> ingredientList) {
-       boolean firstGroup = true;
+    public List<IngredientGroup> parseIngredientGroups (List<Element> ingredientList) {
+        boolean firstGroup = true;
         String groupTitle = "";
         List<String> ingredients = new ArrayList<>();
 
@@ -68,10 +53,5 @@ public class AllReceipeParser extends GenericParser {
         System.out.println(groupTitle);
         System.out.println(ingredients);
         return new ArrayList<>(); //todo make this the actual list
-    }
-
-    @Override
-    public Directions parseDirections() {
-        return null;
     }
 }

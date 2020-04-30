@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract public class GenericParser {
-    Document doc;
-    String url;
+    protected Document doc;
+    protected String url;
 
     public GenericParser(String url, String parserDomain) throws IOException, IncorrectParserException {
         this.url = url;
