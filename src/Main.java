@@ -1,10 +1,8 @@
-import Parsers.AllRecipes.AllReceipeParser;
-import Measurement.Metric;
-import Measurement.Units;
+import Recipe.Recipe;
+import RecipeBuilder.RecipeBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import RecipeBuilder.eRecipeSource;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -43,26 +41,21 @@ public class Main {
             e.printStackTrace();
         }
         */
-         List<String> mtest = Arrays.asList("1 teaspoon Chinese five-spice powder", "1/2 teaspoon freshly ground black pepper",
-                 "1/4 teaspoon cayenne pepper",
-                 "1/8 teaspoon pink curing salt (optional)",
-                 "1 (3 pound) boneless pork butt (shoulder)",
-                 "1 pound raw shrimp, peeled and deveined",
-                 "4 pounds ground beef",
-                 "1 tablespoon minced fresh ginger root",
-                 "1 shallot, minced",
-                 "1 bunch green onions, chopped",
-                 "3 leaves napa cabbage, chopped",
-                 "2 tablespoons soy sauce",
-                 "1 teaspoon Asian (toasted) sesame oil",
-                 "salt and white pepper to taste",
-                 "1 pinch white sugar",
-                 "1 (10 ounce) package round gyoza/potsticker wrappers",
-                 "vegetable oil",
-                 "¼ cup water");
+        String url1 = "https://www.allrecipes.com/recipe/266351/steamed-barbecue-pork-buns/";
+        String url2 = "https://www.allrecipes.com/recipe/276226/lazy-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202";
+        String url3 = "https://www.allrecipes.com/recipe/61024/asian-orange-chicken/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%2043";
 
+        RecipeBuilder builder = new RecipeBuilder(eRecipeSource.WEBSITE, url1);
+        Recipe r1 = builder.getRecipe();
+        System.out.println(r1);
 
+        builder = new RecipeBuilder(eRecipeSource.WEBSITE, url2);
+        Recipe r2 = builder.getRecipe();
+        System.out.println(r2);
 
+        builder = new RecipeBuilder(eRecipeSource.WEBSITE, url3);
+        Recipe r3 = builder.getRecipe();
+        System.out.println(r3);
 
     }
 }

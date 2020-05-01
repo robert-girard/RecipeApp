@@ -2,6 +2,7 @@ package Parsers.AllRecipes;
 
 import Parsers.Exceptions.ParserFailedException;
 import Parsers.Styles;
+import Recipe.Directions;
 import Recipe.IngredientGroup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,25 +24,23 @@ public class Style2 implements Styles {
     }
 
     public List<IngredientGroup> parseIngredientGroups (List<Element> ingredientList) {
-        boolean firstGroup = true;
+        List<IngredientGroup> ingredientGroups = new ArrayList<>();
         String groupTitle = "";
         List<String> ingredients = new ArrayList<>();
 
-        Elements lstItem;
         for (Element lst: ingredientList) {
             groupTitle = lst.select("legend").text();
             for (Element item: lst.select("li")) {
                 ingredients.add(item.text());
             }
-            System.out.println(groupTitle);
-            System.out.println(ingredients);
+            ingredientGroups.add(new IngredientGroup(groupTitle, ingredients));
             groupTitle = "";
             ingredients.clear();
         }
-        return new ArrayList<>(); //todo make this the actual list
+        return ingredientGroups; //todo make this the actual list
     }
 
-    public List<String> getDirections(Document doc) throws ParserFailedException {
+    public Directions getDirections(Document doc) throws ParserFailedException {
         List<String> sInstuctions = new ArrayList<String>();
         Elements instructions = doc.select("ul[class=instructions-section]");
         if (instructions.size() !=1) {
@@ -54,7 +53,7 @@ public class Style2 implements Styles {
             }
             sInstuctions.add(body.text());
         }
-        return sInstuctions;
+        return new Directions(sInstuctions);
     }
 
 }

@@ -5,6 +5,7 @@ import Parsers.Exceptions.ParserFailedException;
 import Recipe.Directions;
 import Recipe.Ingredient;
 
+import Recipe.IngredientGroup;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-abstract public class GenericParser {
+abstract public class Parser {
     protected Document doc;
     protected String url;
 
-    public GenericParser(String url, String parserDomain) throws IOException, IncorrectParserException {
+    public Parser(String url, String parserDomain) throws IOException, IncorrectParserException {
         this.url = url;
         this.doc = Jsoup.connect(url).get();
         if (!url.contains(parserDomain)) {
@@ -35,11 +36,11 @@ abstract public class GenericParser {
         }
     }
 
-    public GenericParser(String url) throws IOException{
+    public Parser(String url) throws IOException{
         this.doc = Jsoup.connect(url).get();
     }
 
-    public abstract List<Ingredient> parseIngredients() throws ParserFailedException;
+    public abstract List<IngredientGroup> parseIngredients() throws ParserFailedException;
 
     public abstract Directions parseDirections() throws ParserFailedException;
 

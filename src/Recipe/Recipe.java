@@ -4,22 +4,20 @@ import java.util.List;
 
 public class Recipe {
     private Directions directions;
-    private List<Ingredient> ingredients;
+    private List<IngredientGroup> ingredientGroups;
     private String course;
 
 
-    public Recipe(Directions directions, List<Ingredient> ingredients, String course) {
+    public Recipe(Directions directions, List<IngredientGroup> ingredientGroups) {
         this.directions = directions;
-        this.ingredients = ingredients;
-        this.course = course;
+        this.ingredientGroups = ingredientGroups;
     }
 
     @Override
     public String toString() {
-        return "Recipe{" +
-                "directions=" + directions +
-                ", ingredients=" + ingredients +
-                ", course='" + course + '\'' +
-                '}';
+        return "Recipe{\n" +
+                "ingredients:\n" + ingredientGroups + "\n" +
+                "directions:\n" + directions + "\n" +
+                "}\n";
     }
 }

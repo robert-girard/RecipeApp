@@ -11,7 +11,7 @@ public class Directions {
 
     @Override
     public String toString() {
-        String str = "Directions:\n";
+        String str = "";
         for (String step: steps) {
             str += step + "\n";
         }

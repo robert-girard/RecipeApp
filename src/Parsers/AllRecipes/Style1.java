@@ -2,6 +2,7 @@ package Parsers.AllRecipes;
 
 import Parsers.Exceptions.ParserFailedException;
 import Parsers.Styles;
+import Recipe.Directions;
 import Recipe.IngredientGroup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,6 +33,7 @@ public class Style1 implements Styles {
         boolean firstGroup = true;
         String groupTitle = "";
         List<String> ingredients = new ArrayList<>();
+        List<IngredientGroup> ingredientGroups = new ArrayList<>();
 
         Elements lstItem;
         for (Element lst: ingredientList) {
@@ -40,9 +42,7 @@ public class Style1 implements Styles {
                 if (!lstItem.hasAttr("disabled")) {
                     ingredients.add(item.text());
                 } else if (!firstGroup) {
-                    //Todo ship the old by adding to an IngredientGroup
-                    System.out.println(groupTitle);
-                    System.out.println(ingredients);
+                    ingredientGroups.add(new IngredientGroup(groupTitle, ingredients));
                     groupTitle = item.text();
                     ingredients.clear();
                 } else {
@@ -51,12 +51,11 @@ public class Style1 implements Styles {
                 }
             }
         }
-        System.out.println(groupTitle);
-        System.out.println(ingredients);
-        return new ArrayList<>(); //todo make this the actual list
+        ingredientGroups.add(new IngredientGroup(groupTitle, ingredients));
+        return ingredientGroups;
     }
 
-    public List<String> getDirections(Document doc) throws ParserFailedException {
+    public Directions getDirections(Document doc) throws ParserFailedException {
         List<String> sInstuctions = new ArrayList<String>();
         Elements instructions = doc.select("ol[itemprop=recipeInstructions]");
         if (instructions.size() !=1) {
@@ -65,7 +64,9 @@ public class Style1 implements Styles {
         for (Element instruction : instructions.first().select("li")) {
             sInstuctions.add(instruction.text());
         }
-        return sInstuctions;
+
+        Directions directions = new Directions(sInstuctions);
+        return directions;
     }
 
 
