@@ -24,8 +24,10 @@ public class RecipeBuilder {
      public Recipe getRecipe() {
         Directions d = recipeSource.getDirections();
         List<IngredientGroup> ig = recipeSource.getIngredientGroups();
+        String title = recipeSource.getTitle();
 
-        return new Recipe(d,ig);
+        Recipe recipe = new Recipe(title, d, ig);
+        return recipe;
      }
 
 

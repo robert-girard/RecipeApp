@@ -56,7 +56,17 @@ public class WebsiteRecipe implements RecipeSource {
         } catch (ParserFailedException e) {
             //TODO change to generic parser and try again
         }
-
         return d;
+    }
+
+    @Override
+    public String getTitle() {
+        String title = null;
+        try {
+            title = parser.parseTitle();
+        } catch (ParserFailedException e) {
+            //TODO change to generic parser and try again
+        }
+        return title;
     }
 }

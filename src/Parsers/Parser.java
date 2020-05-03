@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +44,10 @@ abstract public class Parser {
     public abstract List<IngredientGroup> parseIngredients() throws ParserFailedException;
 
     public abstract Directions parseDirections() throws ParserFailedException;
+
+    public abstract String parseTitle() throws ParserFailedException;
+
+    public abstract Duration parseTime() throws ParserFailedException;
 
     public Ingredient parseUnits(String measurement) {
         return new Ingredient("Ingredient", 5,"Unit");
