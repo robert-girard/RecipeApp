@@ -9,13 +9,15 @@ public class Recipe {
     private Directions directions;
     private List<IngredientGroup> ingredientGroups;
     private String course;
-    private String type;
+    private String category;
     private String title;
     private String nutrition;
     private int yield;
     private int servings;
     private Duration prepTime;
-    private String image; //todo images man images
+
+
+    private String imgSrc; //todo images man images
 
     public String getCourse() {
         return course;
@@ -23,14 +25,6 @@ public class Recipe {
 
     public void setCourse(String course) {
         this.course = course;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getTitle() {
@@ -65,6 +59,22 @@ public class Recipe {
         this.prepTime = prepTime;
     }
 
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 
     public Recipe(String title, Directions directions, List<IngredientGroup> ingredientGroups) throws RecipeCreationException {
         if (title == null || title == "") {
@@ -77,6 +87,9 @@ public class Recipe {
         this.title = title;
         this.directions = directions;
         this.ingredientGroups = ingredientGroups;
+        this.course = null;
+        this.category = null;
+        this.imgSrc = null;
     }
 
     @Override
