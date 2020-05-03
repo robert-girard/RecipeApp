@@ -82,22 +82,25 @@ public class Style1 implements Styles {
 
     public Duration getTime(Document doc) throws ParserFailedException {
         String rawsTime = "";
-        Elements metaElements = doc.select("div.recipe-meta-item");
-        for (Element metaElement : metaElements) {
-            Elements meHeader = metaElement.select("recipe-meta-item-header");
-            if (meHeader.text().contains("total")) {
-                Elements body = metaElement.select("recipe-meta-item-body");
-                rawsTime = body.text();
-                break;
-            }
+        Elements span = doc.select("span.ready-in-time");
+
+        if (span.size() != 1) {
+            throw new ParserFailedException("0 or more than 1 times found");
         }
-        String pattern = "(((\\d+) (hr)[s]? ?)|((\\d+) (min)[s]? ?))+";
+
+        rawsTime = span.text();
+
+        String pattern = "((\\d+) (h ?)|((\\d+) m ?))+";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(rawsTime);
 
+        String sMins = "";
+        String sHours = "";
+        if (m.find()) {
+            sMins = m.group(5);
+            sHours = m.group(2);
+        }
         int mins = 0, hours = 0;
-        String sMins = m.group(4);
-        String sHours = m.group(2);
 
         if (sMins == null && sHours == null) {
             throw new ParserFailedException("Could not parse prep time");
@@ -114,8 +117,5 @@ public class Style1 implements Styles {
 
         return dur;
     }
-
-
-
 }
 

@@ -19,13 +19,11 @@ import java.util.List;
 public class AllReceipeParser extends Parser {
 
     Styles style;
-    List<Styles> styles;
 
 
-    public AllReceipeParser(String url) throws IOException, IncorrectParserException {
+    public AllReceipeParser(String url) throws IOException, IncorrectParserException { //todo the parser should be selected here and stuck to throughout (remove the try and code in catches of the parse functions)
         super(url, "allrecipes.com");
         style = new Style1();
-        styles = Arrays.asList(new Style1(), new Style2());
     }
 
     @Override
@@ -69,7 +67,7 @@ public class AllReceipeParser extends Parser {
 
     @Override
     public Duration parseTime () throws ParserFailedException {
-        return null;
+        return style.getTime(doc);
     }
 
     private <T> T alternatives () {

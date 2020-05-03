@@ -5,17 +5,21 @@ import Parsers.Exceptions.IncorrectParserException;
 import Parsers.Exceptions.ParserFailedException;
 import Parsers.Parser;
 import Parsers.SupportedWebsites;
+
 import Recipe.Directions;
 import Recipe.IngredientGroup;
+import Recipe.Recipe;
+import Recipe.RecipeCreationException;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
-public class WebsiteRecipe implements RecipeSource {
+public class WebsiteSource implements RecipeSource { //todo This should be turned into a builder where it returns the recipe after it used the parser to get the infor
     String url;
     Parser parser;
 
-    public WebsiteRecipe(String url) {
+    public WebsiteSource(String url) {
         this.url = url;
         SupportedWebsites website = SupportedWebsites.ifContains(url);
 
@@ -25,6 +29,7 @@ public class WebsiteRecipe implements RecipeSource {
                     parser = new AllReceipeParser(url);
                     break;
                 } catch (IOException e) {
+                    System.err.println("Problem connecting to website");
                     e.printStackTrace();
                     break;
                 } catch (IncorrectParserException e) {
@@ -36,37 +41,33 @@ public class WebsiteRecipe implements RecipeSource {
 
     }
 
+
+
     @Override
-    public List<IngredientGroup> getIngredientGroups() {
+    public Recipe getRecipe() throws RecipeCreationException {
         List<IngredientGroup> ig = null;
-        try {
-            ig = parser.parseIngredients();
-        } catch (ParserFailedException e) {
-            //TODO change to generic parser and try again
-        }
-
-        return ig;
-    }
-
-    @Override
-    public Directions getDirections() {
         Directions d = null;
-        try {
-            d = parser.parseDirections();
-        } catch (ParserFailedException e) {
-            //TODO change to generic parser and try again
-        }
-        return d;
-    }
-
-    @Override
-    public String getTitle() {
         String title = null;
-        try {
+
+        try {                                               //critical parameters for recipe
+            ig = parser.parseIngredients();
+            d = parser.parseDirections();
             title = parser.parseTitle();
         } catch (ParserFailedException e) {
-            //TODO change to generic parser and try again
+            throw new RecipeCreationException(e.getMessage());//todo try a generic parser first
         }
-        return title;
+
+        Duration dur = null;
+        try {
+            dur = parser.parseTime();
+        } catch (ParserFailedException e) {
+            // not critcal but maybe try generic parser instead?
+        }
+
+        Recipe recipe = new Recipe(title, d, ig);
+
+        recipe.setPrepTime(dur);
+
+        return recipe;
     }
 }

@@ -1,7 +1,8 @@
 package Recipe;
 
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAmount;
+import RecipeBuilder.RecipeBuildException;
+
+import java.time.Duration;
 import java.util.List;
 
 public class Recipe {
@@ -13,7 +14,7 @@ public class Recipe {
     private String nutrition;
     private int yield;
     private int servings;
-    private TemporalAmount prepTime;
+    private Duration prepTime;
     private String image; //todo images man images
 
     public String getCourse() {
@@ -56,16 +57,23 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public TemporalAmount getPrepTime() {
+    public Duration getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(TemporalAmount prepTime) {
+    public void setPrepTime(Duration prepTime) {
         this.prepTime = prepTime;
     }
 
 
-    public Recipe(String title, Directions directions, List<IngredientGroup> ingredientGroups) {
+    public Recipe(String title, Directions directions, List<IngredientGroup> ingredientGroups) throws RecipeCreationException {
+        if (title == null || title == "") {
+            throw new RecipeCreationException("Recipe title null or empty");
+        } else if (directions == null || directions.isEmpty()) {
+            throw new RecipeCreationException("Recipe Directions null or empty");
+        } else if (ingredientGroups.isEmpty() || ingredientGroups == null) {
+            throw new RecipeCreationException("Recipe Ingredients null or empty");
+        }
         this.title = title;
         this.directions = directions;
         this.ingredientGroups = ingredientGroups;
@@ -74,8 +82,9 @@ public class Recipe {
     @Override
     public String toString() {
         return "Recipe{" + title + "\n" +
-                "ingredients:\n" + ingredientGroups + "\n" +
+                "Ingredients:\n" + ingredientGroups + "\n" +
                 "directions:\n" + directions + "\n" +
-                "}\n";
+                "Prep Time:\n" + prepTime +
+                "\n}\n";
     }
 }

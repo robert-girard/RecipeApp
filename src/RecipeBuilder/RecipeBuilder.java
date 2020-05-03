@@ -1,33 +1,32 @@
 package RecipeBuilder;
 
 import Recipe.Recipe;
-import Recipe.Directions;
-import Recipe.IngredientGroup;
-
-import java.util.List;
+import Recipe.RecipeCreationException;
 
 public class RecipeBuilder {
 
-    eRecipeSource sourceType;
+    RecipeSourceTypes sourceType;
     String source;
     RecipeSource recipeSource;
 
-    public RecipeBuilder(eRecipeSource sourceType, String source) {
+    public RecipeBuilder(RecipeSourceTypes sourceType, String source) {
          this.sourceType = sourceType;
          this.source = source;
          switch (sourceType) {
              case WEBSITE:
-                 recipeSource = new WebsiteRecipe(source);
+                 recipeSource = new WebsiteSource(source);
          }
      }
 
      public Recipe getRecipe() {
-        Directions d = recipeSource.getDirections();
-        List<IngredientGroup> ig = recipeSource.getIngredientGroups();
-        String title = recipeSource.getTitle();
+        Recipe r = null;
 
-        Recipe recipe = new Recipe(title, d, ig);
-        return recipe;
+        try {
+            r = recipeSource.getRecipe();
+        } catch (RecipeCreationException e) {
+            e.printStackTrace();
+        }
+        return r;
      }
 
 

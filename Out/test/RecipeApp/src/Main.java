@@ -1,7 +1,7 @@
 import Recipe.Recipe;
 import RecipeBuilder.RecipeBuilder;
 
-import RecipeBuilder.eRecipeSource;
+import RecipeBuilder.RecipeSourceTypes;
 
 
 public class Main {
@@ -45,15 +45,15 @@ public class Main {
         String url2 = "https://www.allrecipes.com/recipe/276226/lazy-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202";
         String url3 = "https://www.allrecipes.com/recipe/61024/asian-orange-chicken/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%2043";
 
-        RecipeBuilder builder = new RecipeBuilder(eRecipeSource.WEBSITE, url1);
+        RecipeBuilder builder = new RecipeBuilder(RecipeSourceTypes.WEBSITE, url1);
         Recipe r1 = builder.getRecipe();
         System.out.println(r1);
 
-        builder = new RecipeBuilder(eRecipeSource.WEBSITE, url2);
+        builder = new RecipeBuilder(RecipeSourceTypes.WEBSITE, url2);
         Recipe r2 = builder.getRecipe();
         System.out.println(r2);
 
-        builder = new RecipeBuilder(eRecipeSource.WEBSITE, url3);
+        builder = new RecipeBuilder(RecipeSourceTypes.WEBSITE, url3);
         Recipe r3 = builder.getRecipe();
         System.out.println(r3);
 

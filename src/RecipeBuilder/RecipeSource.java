@@ -1,12 +1,10 @@
 package RecipeBuilder;
 
-import Recipe.Directions;
-import Recipe.IngredientGroup;
+import Recipe.Recipe;
+import Recipe.RecipeCreationException;
 
 import java.util.List;
 
 public interface RecipeSource {
-    public List<IngredientGroup> getIngredientGroups();
-    public Directions getDirections();
-    public String getTitle();
+    public Recipe getRecipe() throws RecipeCreationException;
 }

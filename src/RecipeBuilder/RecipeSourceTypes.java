@@ -1,6 +1,6 @@
 package RecipeBuilder;
 
-public enum eRecipeSource {
+public enum RecipeSourceTypes {
     WEBSITE,
     MANUAL;
 }

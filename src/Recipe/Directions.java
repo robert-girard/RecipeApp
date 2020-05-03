@@ -17,4 +17,8 @@ public class Directions {
         }
         return str;
     }
+
+    public boolean isEmpty() {
+        return steps.isEmpty();
+    }
 }
