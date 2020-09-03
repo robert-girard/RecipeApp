@@ -7,7 +7,7 @@ Application for webscraping recipies and storing them in SQLite database. This w
 
 Web Scraping from AllRecipes and storage into SQLite database.
 
-## future
+## Future
 
 In the future I may or may not add the following functionality:
 
